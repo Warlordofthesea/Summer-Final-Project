@@ -42,5 +42,6 @@ public class PlayerControls : MonoBehaviour
 
         // Update the current rotation angle
         currentRotationAngle = desiredRotationAngle;
+
     }
 }
