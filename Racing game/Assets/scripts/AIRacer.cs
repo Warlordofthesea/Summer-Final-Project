@@ -4,23 +4,27 @@ using UnityEngine;
 
 public class AIRacer : MonoBehaviour
 {
-    public Transform[] waypoints; // Array of waypoints the AIcar will follow
-    public float moveSpeed = 5f;  // Speed at which the AI car moves
+    public Transform[] waypoints;      // Array of waypoints the AI car will follow
+    public float moveSpeed = 5f;       // Speed at which the AI car moves
+    public float rotationSpeed = 2f;   // Base speed at which the AI car rotates
+    public Transform frontTransform;   // Front transform of the AI car
+    public Transform backTransform;    // Back transform of the AI car
 
-    private int currentWaypointIndex = 0; // Index of the current waypoint
+    private int currentWaypointIndex = 0;  // Index of the current waypoint
 
-    // Start is called before the first frame update
     private void Start()
     {
-        // Set the AI car's posistion to the first waypoint
+        // Set the AI car's position to the first waypoint
         transform.position = waypoints[0].position;
     }
 
-    // Update is called once per frame
     private void Update()
     {
         // Move towards the current waypoint
         MoveTowardsWaypoint();
+
+        // Rotate towards the next waypoint
+        RotateTowardsWaypoint();
     }
 
     private void MoveTowardsWaypoint()
@@ -41,5 +45,21 @@ public class AIRacer : MonoBehaviour
 
         // Move the AI car towards the current waypoint
         transform.position = Vector3.MoveTowards(transform.position, waypoints[currentWaypointIndex].position, moveSpeed * Time.deltaTime);
+    }
+
+    private void RotateTowardsWaypoint()
+    {
+        // Calculate the direction to the next waypoint
+        Vector3 direction = waypoints[currentWaypointIndex].position - transform.position;
+        direction.y = 0f; // Ensure the car doesn't tilt up or down
+
+        // Determine the target rotation based on the front and back transforms
+        Quaternion targetRotation = Quaternion.LookRotation(direction, Vector3.up);
+
+        // Calculate the rotation speed based on the movement speed
+        float scaledRotationSpeed = rotationSpeed * moveSpeed;
+
+        // Smoothly rotate the AI car towards the next waypoint using the scaled rotation speed
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, scaledRotationSpeed * Time.deltaTime);
     }
 }
