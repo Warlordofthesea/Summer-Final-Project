@@ -11,10 +11,20 @@ public class Timer : MonoBehaviour
     public float currentTime;
     public bool countDown;
 
+    [Header("Limit Settings")]
+    public bool hasLimit;
+    public float timerLimit;
+
+    [Header("Format Settings")]
+     public TimerFormats format;
+    private Dictionary<TimerFormats, string> timeFormats = new Dictionary<TimerFormats, string>();
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        timeFormats.Add(TimerFormats.Whole, "0");
+        timeFormats.Add(TimerFormats.TenthDecimal, "0.0");
+        timeFormats.Add(TimerFormats.HundrethsDecimal, "0.00");
     }
 
     // Update is called once per frame
@@ -26,7 +36,7 @@ public class Timer : MonoBehaviour
         {
             currentTime = timerLimit;
             SetTimerText();
-            timerText.Color = Color.red;
+            timerText.color = Color.red;
             enabled = false;
         }
         
@@ -36,6 +46,13 @@ public class Timer : MonoBehaviour
 
     private void SetTimerText()
     { 
-        timerText.Text = currentTime.ToString();
+        timerText.text = currentTime.ToString("0.0");
     }
+}
+
+public enum TimerFormats
+{
+    Whole,
+    TenthDecimal,
+    HundrethsDecimal
 }
