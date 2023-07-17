@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+
 public class Timer : MonoBehaviour
 {
     [Header("Componet")]
@@ -18,6 +19,9 @@ public class Timer : MonoBehaviour
     [Header("Format Settings")]
      public TimerFormats format;
     private Dictionary<TimerFormats, string> timeFormats = new Dictionary<TimerFormats, string>();
+
+    [Header("Game Over")]
+    public GameObject gameOverPanel;
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +42,10 @@ public class Timer : MonoBehaviour
             SetTimerText();
             timerText.color = Color.red;
             enabled = false;
+
+            // Trigger Game over scrren
+            GameOver();
+
         }
         
 
@@ -47,6 +55,13 @@ public class Timer : MonoBehaviour
     private void SetTimerText()
     { 
         timerText.text = currentTime.ToString("0.0");
+    }
+
+    private void GameOver()
+    {
+        // Show game over panel
+        gameOverPanel.SetActive(true);
+
     }
 }
 
