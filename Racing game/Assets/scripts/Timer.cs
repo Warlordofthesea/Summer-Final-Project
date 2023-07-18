@@ -17,7 +17,7 @@ public class Timer : MonoBehaviour
     public float timerLimit;
 
     [Header("Format Settings")]
-     public TimerFormats format;
+    public TimerFormats format;
     private Dictionary<TimerFormats, string> timeFormats = new Dictionary<TimerFormats, string>();
 
     [Header("Game Over")]
