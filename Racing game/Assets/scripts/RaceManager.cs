@@ -1,14 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RaceManager : MonoBehaviour
 {
+    private int lapCount = 0;
+    private int requiredLaps = 3;
+
     public static RaceManager Instance { get; private set; }
-
-    public LapCounter lapCounter;
-
-    private int playerPosition = 0;
 
     private void Awake()
     {
@@ -22,40 +19,37 @@ public class RaceManager : MonoBehaviour
         }
     }
 
-    public void PlayerFinishedLaps()
+    public void OnTriggerEnter(Collider other)
     {
-        // Increment the player position and determine the final position
-        playerPosition++;
-        int finalPosition = DetermineFinalPosition(playerPosition);
-
-        // Perform actions based on the final position
-        switch (finalPosition)
+        if (other.CompareTag("Player"))
         {
-            case 1:
-                Debug.Log("Player finished in 1st position!");
-                // Add code for 1st place
-                break;
-            case 2:
-                Debug.Log("Player finished in 2nd position!");
-                // Add code for 2nd place
-                break;
-            case 3:
-                Debug.Log("Player finished in 3rd position!");
-                // Add code for 3rd place
-                break;
-            case 4:
-                Debug.Log("Player finished in 4th position!");
-                // Add code for 4th place
-                break;
-            default:
-                Debug.Log("Player finished in a non-determinable position.");
-                break;
+            IncreaseLapCount();
+            int lapCount = GetLapCount();
+            LapCounter lapCounter = FindObjectOfType<LapCounter>();
+            Debug.Log("Lap Complete");
+
+            if (lapCounter != null)
+            {
+                lapCounter.UpdateLapCount(lapCount);
+            }
         }
     }
 
-    private int DetermineFinalPosition(int playerPosition)
+    public void IncreaseLapCount()
     {
-        // You can add your own logic here to determine the final position based on the number of players and their positions
-        return playerPosition;
+        lapCount++;
+
+        if (lapCount >= requiredLaps)
+        {
+            // Call the game over or win condition method here
+            // You can trigger the game over panel or any other logic you desire
+        }
     }
+
+    public int GetLapCount()
+    {
+        return lapCount;
+    }
+
+    // Other methods and logic for lap counting
 }
