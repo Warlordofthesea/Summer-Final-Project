@@ -1,9 +1,10 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RaceManager : MonoBehaviour
 {
     private int lapCount = 0;
-    private int requiredLaps = 3;
+    private int requiredLaps = 4;
 
     public static RaceManager Instance { get; private set; }
 
@@ -42,6 +43,7 @@ public class RaceManager : MonoBehaviour
         if (lapCount >= requiredLaps)
         {
             // Call the game over or win condition method here
+            SceneManager.LoadSceneAsync(2);
             // You can trigger the game over panel or any other logic you desire
         }
     }

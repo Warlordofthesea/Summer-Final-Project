@@ -2260,7 +2260,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Laps: /3'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2349,6 +2349,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de386a66ac3d643afb7a0f88a6260db7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lapCountText: {fileID: 88732445}
 --- !u!1 &91811407
 GameObject:
   m_ObjectHideFlags: 0
@@ -4606,6 +4607,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de386a66ac3d643afb7a0f88a6260db7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lapCountText: {fileID: 0}
 --- !u!1 &219754388 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1998251007997126, guid: 139657e373e33664f9376f59fd08184e, type: 3}
@@ -26241,6 +26243,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1254008825}
+  - component: {fileID: 1254008826}
   m_Layer: 0
   m_Name: LapCounter
   m_TagString: Untagged
@@ -26263,6 +26266,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1254008826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1254008823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de386a66ac3d643afb7a0f88a6260db7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lapCountText: {fileID: 88732445}
 --- !u!1 &1255309196 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1781813259710470, guid: b59bf6a163c105e4985405750426f447, type: 3}
